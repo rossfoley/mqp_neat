@@ -1,0 +1,10 @@
+<network>
+<title>7</title>
+<neuron id="0" type="in" hint-layer="1" hint-position="1.0" value="0.0" step-pending="false" activation="linear" />
+<neuron id="1" type="in" hint-layer="1" hint-position="2.0" value="0.0" step-pending="false" activation="linear" />
+<neuron id="2" type="in" hint-layer="1" hint-position="3.0" value="0.0" step-pending="false" activation="linear" />
+<neuron id="3" type="out" hint-layer="2" hint-position="1.0" value="0.5" step-pending="false" activation="sigmoid" />
+<connection src-id="0" tgt-id="3" weight="-0.623569130897522" recurrent="false" />
+<connection src-id="1" tgt-id="3" weight="-0.9636988639831543" recurrent="false" />
+<connection src-id="2" tgt-id="3" weight="-0.25521600246429443" recurrent="false" />
+</network>

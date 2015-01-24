@@ -21,9 +21,13 @@ package com.anji.neat;
 
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
-import com.anji.integration.ErrorFunction;
-import com.anji.integration.TargetFitnessFunction;
+import com.anji.integration.*;
 import com.anji.util.Properties;
+import org.jgap.BulkFitnessFunction;
+import org.jgap.Chromosome;
+import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  * Fitness function where error is subtracted from max fitness, then squared. Fitness is skewed
@@ -35,11 +39,13 @@ import com.anji.util.Properties;
  * @author Philip Tucker
  * @see com.anji.integration.TargetFitnessFunction
  */
-public class MarioFitnessFunction extends TargetFitnessFunction {
+public class MarioFitnessFunction implements BulkFitnessFunction {
 
 	private final static boolean SUM_OF_SQUARES = false;
 
 	private final static int MAX_FITNESS = 160000000;
+
+	private ActivatorTranscriber activatorFactory;
 
 	/**
 	 * See <a href=" {@docRoot}/params.htm" target="anji_params">Parameter Details </a> for
@@ -49,9 +55,10 @@ public class MarioFitnessFunction extends TargetFitnessFunction {
 	 */
 	public void init( Properties newProps ) {
 		try {
-			super.init( newProps );
+			//super.init( newProps );
 			ErrorFunction.getInstance().init( newProps );
-			setMaxFitnessValue( MAX_FITNESS );
+			//setMaxFitnessValue( MAX_FITNESS );
+			activatorFactory = (ActivatorTranscriber) newProps.singletonObjectProperty(ActivatorTranscriber.class);
 		}
 		catch ( Exception e ) {
 			throw new IllegalArgumentException( "invalid properties: " + e.getClass().toString()
@@ -86,6 +93,26 @@ public class MarioFitnessFunction extends TargetFitnessFunction {
 //    basicTask.runSingleEpisode(1);
 		basicTask.doEpisodes(1,true,1);
 		return 10;
+	}
+
+	public void evaluate(List chromosomes){
+		ArrayList<Chromosome> chromos = (ArrayList<Chromosome>)chromosomes;
+		for(Chromosome c: chromos){
+			try {
+				Activator a = activatorFactory.newActivator(c);
+				//1. instantiate Mario agent class with Activator
+				//2. evaluate the agent
+				//3. store the fitness from the agent back into the chromosome (return the data kinda)
+				//4. set up allessesssesees (with input and output neurons apporiate for mario)
+			}
+			catch (Exception e){
+
+			}
+		}
+	}
+
+	public int getMaxFitnessValue(){
+		return 1000;
 	}
 
 }
