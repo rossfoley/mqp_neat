@@ -9,7 +9,7 @@ import com.anji.integration.Activator;
  */
 public class NEATAgent extends BasicMarioAIAgent {
     private Activator neat_nn;
-    public final int NUM_INPUTS = 21;
+    public final int NUM_INPUTS = 101;
 
     public NEATAgent(Activator nn) {
         super("NEATAgent");
