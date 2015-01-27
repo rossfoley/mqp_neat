@@ -19,12 +19,18 @@
  */
 package com.anji.neat;
 
+import ch.idsia.agents.Agent;
+import ch.idsia.agents.controllers.ForwardAgent;
+import ch.idsia.agents.controllers.mqp.NEATAgent;
+import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
 import com.anji.integration.*;
 import com.anji.util.Properties;
 import org.jgap.BulkFitnessFunction;
 import org.jgap.Chromosome;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -66,40 +72,39 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 		}
 	}
 
-	/**
-	 * Subtract <code>responses</code> from targets, sum all differences, subtract from max
-	 * fitness, and square result.
-	 * j
-	 * @param responses output top be compared to targets
-	 * @param minResponse
-	 * @param maxResponse
-	 * @return result of calculation
-	 */
-	protected int calculateErrorFitness( double[][] responses, double minResponse, double maxResponse ) {
-		final MarioAIOptions marioAIOptions = new MarioAIOptions("");
-//        final Environment environment = new MarioEnvironment();
-//        final Agent agent = new ForwardAgent();
-//        final Agent agent = marioAIOptions.getAgent();
-//        final Agent a = AgentsPool.loadAgent("ch.idsia.controllers.agents.controllers.ForwardJumpingAgent");
-		final BasicTask basicTask = new BasicTask(marioAIOptions);
-//        for (int i = 0; i < 10; ++i)
-//        {
-//            int seed = 0;
-//            do
-//            {
-//                marioAIOptions.setLevelDifficulty(i);
-//                marioAIOptions.setLevelRandSeed(seed++);
-		basicTask.setOptionsAndReset(marioAIOptions);
-//    basicTask.runSingleEpisode(1);
-		basicTask.doEpisodes(1,true,1);
-		return 10;
-	}
-
 	public void evaluate(List chromosomes){
 		ArrayList<Chromosome> chromos = (ArrayList<Chromosome>)chromosomes;
 		for(Chromosome c: chromos){
 			try {
 				Activator a = activatorFactory.newActivator(c);
+				NEATAgent marioAgent = new NEATAgent(a);
+				boolean[] actions = marioAgent.getAction();
+
+				final MarioAIOptions marioAIOptions = new MarioAIOptions();
+				final BasicTask basicTask = new BasicTask(marioAIOptions);
+				int seed = 0;
+				do{
+						marioAIOptions.setLevelDifficulty(1);
+						marioAIOptions.setLevelRandSeed(seed);
+						marioAIOptions.setGameViewer(true);
+						//marioAIOptions.setGameViewerContinuousUpdates(true);
+						marioAIOptions.setAgent(agent);
+						marioAIOptions.setFPS(100);
+						basicTask.setOptionsAndReset(marioAIOptions);
+						basicTask.runSingleEpisode(1);
+						System.out.println(basicTask.getEnvironment().getEvaluationInfoAsString());
+					} while (basicTask.getEnvironment().getEvaluationInfo().marioStatus != Environment.MARIO_STATUS_WIN);
+				Runtime rt = Runtime.getRuntime();
+				try
+				{
+//            Process proc = rt.exec("/usr/local/bin/mate " + marioTraceFileName);
+					Process proc = rt.exec("python hello.py");
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+				System.exit(0);
+
 				//1. instantiate Mario agent class with Activator
 				//2. evaluate the agent
 				//3. store the fitness from the agent back into the chromosome (return the data kinda)
