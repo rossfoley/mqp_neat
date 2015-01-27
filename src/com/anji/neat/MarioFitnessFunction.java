@@ -92,26 +92,19 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 						marioAIOptions.setFPS(100);
 						basicTask.setOptionsAndReset(marioAIOptions);
 						basicTask.runSingleEpisode(1);
-						System.out.println(basicTask.getEnvironment().getEvaluationInfoAsString());
+						//System.out.println(basicTask.getEnvironment().getEvaluationInfoAsString());
 					} while (basicTask.getEnvironment().getEvaluationInfo().marioStatus != Environment.MARIO_STATUS_WIN);
 				Runtime rt = Runtime.getRuntime();
-				try
-				{
-//            Process proc = rt.exec("/usr/local/bin/mate " + marioTraceFileName);
-					Process proc = rt.exec("python hello.py");
-				} catch (IOException e)
-				{
-					e.printStackTrace();
-				}
 				System.exit(0);
 
+				int value = basicTask.getEnvironment().getEvaluationInfo().computeBasicFitness();
+				c.setFitnessValue(value);
 				//1. instantiate Mario agent class with Activator
 				//2. evaluate the agent
 				//3. store the fitness from the agent back into the chromosome (return the data kinda)
 				//4. set up allessesssesees (with input and output neurons apporiate for mario)
 			}
 			catch (Exception e){
-
 			}
 		}
 	}
