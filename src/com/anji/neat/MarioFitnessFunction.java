@@ -88,7 +88,7 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 						marioAIOptions.setLevelRandSeed(seed);
 						marioAIOptions.setGameViewer(true);
 						//marioAIOptions.setGameViewerContinuousUpdates(true);
-						marioAIOptions.setAgent(agent);
+						marioAIOptions.setAgent(marioAgent);
 						marioAIOptions.setFPS(100);
 						basicTask.setOptionsAndReset(marioAIOptions);
 						basicTask.runSingleEpisode(1);
