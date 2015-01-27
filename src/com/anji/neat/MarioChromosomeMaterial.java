@@ -10,7 +10,7 @@ public class MarioChromosomeMaterial{
 
     public MarioChromosomeMaterial(){}
 
-    public ChromosomeMaterial getMaterial(){
+    public static ChromosomeMaterial getMaterial(){
         ArrayList<NeuronAllele> alleles = new ArrayList<NeuronAllele>();
         NeuronAllele inUp = new NeuronAllele(new NeuronGene(NeuronType.INPUT, (long)0, ActivationFunctionType.LINEAR));
         NeuronAllele inUpRight = new NeuronAllele(new NeuronGene(NeuronType.INPUT, (long)0, ActivationFunctionType.LINEAR));
@@ -21,12 +21,12 @@ public class MarioChromosomeMaterial{
         NeuronAllele inLeft = new NeuronAllele(new NeuronGene(NeuronType.INPUT, (long)0, ActivationFunctionType.LINEAR));
         NeuronAllele inUpLeft = new NeuronAllele(new NeuronGene(NeuronType.INPUT, (long)0, ActivationFunctionType.LINEAR));
 
-        NeuronAllele outA = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
-        NeuronAllele outS = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
-        NeuronAllele outRight = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
-        NeuronAllele outLeft = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
-        NeuronAllele outUp = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
-        NeuronAllele outDown = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_LEFT = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_RIGHT = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_DOWN = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_JUMP = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_SPEED = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
+        NeuronAllele key_UP = new NeuronAllele(new NeuronGene(NeuronType.OUTPUT, (long)0, ActivationFunctionType.LINEAR));
         alleles.add(inUp);
         alleles.add(inUpRight);
         alleles.add(inRight);
@@ -35,12 +35,12 @@ public class MarioChromosomeMaterial{
         alleles.add(inDownLeft);
         alleles.add(inLeft);
         alleles.add(inUpLeft);
-        alleles.add(outA);
-        alleles.add(outS);
-        alleles.add(outRight);
-        alleles.add(outLeft);
-        alleles.add(outUp);
-        alleles.add(outDown);
+        alleles.add(key_LEFT);
+        alleles.add(key_RIGHT);
+        alleles.add(key_DOWN);
+        alleles.add(key_JUMP);
+        alleles.add(key_SPEED);
+        alleles.add(key_UP);
 
         return new ChromosomeMaterial(alleles);
     }
