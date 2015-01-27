@@ -1,10 +1,9 @@
 package mqp.anji;
 
-import com.anji.neat.NeatChromosomeUtility;
 import com.anji.neat.NeatConfiguration;
 import com.anji.util.Properties;
-import org.jgap.*;
-import org.jgap.impl.DefaultConfiguration;
+import org.jgap.Genotype;
+import org.jgap.InvalidConfigurationException;
 
 import java.io.IOException;
 
