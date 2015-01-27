@@ -16,18 +16,10 @@ public class MarioRunner {
 
     public static void main(String[] args) throws InvalidConfigurationException, IOException {
         // Load in the mario properties file
-        Properties props = new Properties();
-        props.loadFromResource("mario.properties");
-
-        // Set up the proper config and fitness function
+        Properties props = new Properties("mario.properties");
         NeatConfiguration config = new NeatConfiguration(props);
-        MarioFitnessFunction fitnessFunction = new MarioFitnessFunction();
-        ChromosomeMaterial marioMaterial = NeatChromosomeUtility.newSampleChromosomeMaterial((short)101, (short)0, (short)6, config, true);
-
-        // Apply config settings
+        MarioFitnessFunction fitnessFunction = new MarioFitnessFunction(props);
         config.setBulkFitnessFunction(fitnessFunction);
-        config.setSampleChromosomeMaterial(marioMaterial);
-        config.setPopulationSize(500);
 
         // Generate a random initial population
         Genotype population = Genotype.randomInitialGenotype(config);

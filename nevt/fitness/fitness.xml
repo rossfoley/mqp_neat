@@ -1,59 +1,34 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="./graphFitness.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="./graphFitnessRefresh.xsl" ?>
 <!DOCTYPE run SYSTEM "../run.dtd">
-<run name="testrun" timedatestamp="[20150123 18:15:29 - 20150123 18:15:37]" >
+<run name="mariorun" timedatestamp="[20150127 17:14:41 - 20150127 17:14:42]" >
 <search-parameters>
 <population-size>10</population-size>
 <generations>2</generations>
 </search-parameters>
 <generation id="1" >
 <fitness>
-<max>10</max>
-<min>10</min>
-<avg>10</avg>
+<max>-1</max>
+<min>-1</min>
+<avg>-1</avg>
 </fitness>
 <complexity>
-<champ>7</champ>
-<max>7</max>
-<min>7</min>
-<avg>7.0</avg>
+<champ>713</champ>
+<max>713</max>
+<min>713</min>
+<avg>713.0</avg>
 </complexity>
-<specie id="7" count="10">
-<chromosome id="7" fitness="10" />
-<chromosome id="8" fitness="10" />
-<chromosome id="9" fitness="10" />
-<chromosome id="10" fitness="10" />
-<chromosome id="11" fitness="10" />
-<chromosome id="12" fitness="10" />
-<chromosome id="13" fitness="10" />
-<chromosome id="14" fitness="10" />
-<chromosome id="15" fitness="10" />
-<chromosome id="16" fitness="10" />
-</specie>
-</generation>
-<generation id="2" >
-<fitness>
-<max>10</max>
-<min>10</min>
-<avg>10</avg>
-</fitness>
-<complexity>
-<champ>7</champ>
-<max>7</max>
-<min>7</min>
-<avg>7.0</avg>
-</complexity>
-<specie id="7" count="10">
-<chromosome id="7" fitness="10" />
-<chromosome id="8" fitness="10" />
-<chromosome id="18" fitness="10" />
-<chromosome id="19" fitness="10" />
-<chromosome id="20" fitness="10" />
-<chromosome id="21" fitness="10" />
-<chromosome id="22" fitness="10" />
-<chromosome id="23" fitness="10" />
-<chromosome id="24" fitness="10" />
-<chromosome id="25" fitness="10" />
+<specie id="713" count="10">
+<chromosome id="713" fitness="-1" />
+<chromosome id="714" fitness="-1" />
+<chromosome id="715" fitness="-1" />
+<chromosome id="716" fitness="-1" />
+<chromosome id="717" fitness="-1" />
+<chromosome id="718" fitness="-1" />
+<chromosome id="719" fitness="-1" />
+<chromosome id="720" fitness="-1" />
+<chromosome id="721" fitness="-1" />
+<chromosome id="722" fitness="-1" />
 </specie>
 </generation>
 </run>
