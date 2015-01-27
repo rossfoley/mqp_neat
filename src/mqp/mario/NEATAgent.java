@@ -1,4 +1,4 @@
-package ch.idsia.agents.controllers.mqp;
+package mqp.mario;
 
 import ch.idsia.agents.Agent;
 import ch.idsia.agents.controllers.BasicMarioAIAgent;
