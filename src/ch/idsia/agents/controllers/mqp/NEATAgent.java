@@ -9,6 +9,7 @@ import com.anji.integration.Activator;
  */
 public class NEATAgent extends BasicMarioAIAgent implements Agent {
     private Activator neat_nn;
+    private double[] stimuli = new double[100]; // Change size to actual input numbers
 
     public NEATAgent(Activator nn) {
         super("NEATAgent");
@@ -17,7 +18,6 @@ public class NEATAgent extends BasicMarioAIAgent implements Agent {
 
     public boolean[] getAction() {
         // Set values in action based on the result of the neural network
-        double[] stimuli = new double[100]; // Change size to actual input numbers
         // Fill in stimuli with the neural network inputs
         double[] output = neat_nn.next(stimuli);
         for (int i = 0; i < output.size; i++) {
