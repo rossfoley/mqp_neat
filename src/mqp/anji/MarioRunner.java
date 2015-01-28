@@ -19,6 +19,7 @@ public class MarioRunner {
         NeatConfiguration config = new NeatConfiguration(props);
         MarioFitnessFunction fitnessFunction = new MarioFitnessFunction(props);
         config.setBulkFitnessFunction(fitnessFunction);
+        config.load();
 
         // Generate a random initial population
         Genotype population = Genotype.randomInitialGenotype(config);

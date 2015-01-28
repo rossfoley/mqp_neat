@@ -1,5 +1,6 @@
 package mqp.anji;
 
+import ch.idsia.benchmark.tasks.ProgressTask;
 import mqp.mario.NEATAgent;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
@@ -33,26 +34,17 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 	}
 
 	public void evaluate(List chromosomes) {
+		MarioAIOptions marioAIOptions = new MarioAIOptions();
+		marioAIOptions.setVisualization(false);
+		ProgressTask task = new ProgressTask(marioAIOptions);
+
 		Iterator it = chromosomes.iterator();
 		while (it.hasNext()) {
 			Chromosome c = (Chromosome) it.next();
 			try {
 				Activator a = activatorFactory.newActivator(c);
 				NEATAgent marioAgent = new NEATAgent(a);
-				final MarioAIOptions marioAIOptions = new MarioAIOptions();
-				final BasicTask basicTask = new BasicTask(marioAIOptions);
-				int seed = 0;
-
-				marioAIOptions.setLevelDifficulty(1);
-				marioAIOptions.setLevelRandSeed(seed);
-				marioAIOptions.setGameViewer(false);
-				marioAIOptions.setGameViewerContinuousUpdates(false);
-				marioAIOptions.setVisualization(false);
-				marioAIOptions.setAgent(marioAgent);
-				basicTask.setOptionsAndReset(marioAIOptions);
-				basicTask.runSingleEpisode(1);
-
-				int fitness = basicTask.getEnvironment().getEvaluationInfo().computeBasicFitness();
+				int fitness = task.evaluate(marioAgent);
 				c.setFitnessValue(fitness);
 			} catch (Exception e) {
 				System.out.println("Error in generating an activator for the current chromosome!");
