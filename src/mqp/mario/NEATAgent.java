@@ -1,6 +1,5 @@
 package mqp.mario;
 
-import ch.idsia.agents.Agent;
 import ch.idsia.agents.controllers.BasicMarioAIAgent;
 import com.anji.integration.Activator;
 
@@ -44,7 +43,7 @@ public class NEATAgent extends BasicMarioAIAgent {
 
         // Fill in the actions based on the output
         for (int i = 0; i < output.length; i++) {
-            action[i] = (output[i] > 0);
+            action[i] = (output[i] > 0.5);
         }
 
         return action;
