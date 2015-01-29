@@ -17,7 +17,7 @@ import org.jgap.Configuration;
 public class MarioActivator {
     public static void main(String[] args) throws Exception {
         // Set the Chromosome ID to run
-        final String chromosomeID = "19194";
+        final String chromosomeID = "78153";
 
         // Load in the properties file
         Properties props = new Properties("mario.properties");
