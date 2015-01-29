@@ -43,7 +43,7 @@ public class NEATAgent extends BasicMarioAIAgent {
 
         // Fill in the actions based on the output
         for (int i = 0; i < output.length; i++) {
-            action[i] = (output[i] > 1);
+            action[i] = (output[i] > 0.5);
         }
 
         return action;
