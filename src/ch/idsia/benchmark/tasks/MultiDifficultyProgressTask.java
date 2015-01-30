@@ -29,8 +29,10 @@ package ch.idsia.benchmark.tasks;
 
 import ch.idsia.agents.Agent;
 import ch.idsia.tools.MarioAIOptions;
-//import ch.idsia.tools.EvaluationInfo;
-//import ch.idsia.tools.Evaluator;
+import ch.idsia.tools.EvaluationInfo;
+import ch.idsia.tools.Evaluator;
+
+import java.util.List;
 
 //import java.util.List;
 

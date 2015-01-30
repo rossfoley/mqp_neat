@@ -1,22 +1,27 @@
 package mqp.anji;
 
-import ch.idsia.benchmark.tasks.ProgressTask;
-import mqp.mario.NEATAgent;
-import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
-import com.anji.integration.*;
+import com.anji.integration.Activator;
+import com.anji.integration.ActivatorTranscriber;
+import com.anji.integration.ErrorFunction;
 import com.anji.util.Properties;
+import mqp.mario.MQPMarioTask;
+import mqp.mario.NEATAgent;
 import org.jgap.BulkFitnessFunction;
 import org.jgap.Chromosome;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
+/**
+ * Evaluate a list of chromosomes by having them complete the MQPMarioTask
+ * @author Ross Foley and Karl Kuhn
+ */
 public class MarioFitnessFunction implements BulkFitnessFunction {
 	private final static int MAX_FITNESS = 160000000;
 	private ActivatorTranscriber activatorFactory;
 	private Properties props;
+	private int radius;
 
 	public MarioFitnessFunction(Properties props) {
 		init(props);
@@ -27,6 +32,7 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 			props = newProps;
 			ErrorFunction.getInstance().init(newProps);
 			activatorFactory = (ActivatorTranscriber) newProps.singletonObjectProperty(ActivatorTranscriber.class);
+			radius = props.getIntProperty("mario.agent.input.radius");
 		} catch ( Exception e ) {
 			throw new IllegalArgumentException( "invalid properties: " + e.getClass().toString()
 					+ ": " + e.getMessage() );
@@ -36,14 +42,14 @@ public class MarioFitnessFunction implements BulkFitnessFunction {
 	public void evaluate(List chromosomes) {
 		MarioAIOptions marioAIOptions = new MarioAIOptions();
 		marioAIOptions.setVisualization(false);
-		ProgressTask task = new ProgressTask(marioAIOptions);
+		MQPMarioTask task = new MQPMarioTask(marioAIOptions);
 
 		Iterator it = chromosomes.iterator();
 		while (it.hasNext()) {
 			Chromosome c = (Chromosome) it.next();
 			try {
 				Activator a = activatorFactory.newActivator(c);
-				NEATAgent marioAgent = new NEATAgent(a);
+				NEATAgent marioAgent = new NEATAgent(a, radius);
 				int fitness = task.evaluate(marioAgent);
 				c.setFitnessValue(fitness);
 			} catch (Exception e) {

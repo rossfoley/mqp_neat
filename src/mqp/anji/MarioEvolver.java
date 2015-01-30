@@ -1,6 +1,5 @@
 package mqp.anji;
 
-import com.anji.Copyright;
 import com.anji.integration.LogEventListener;
 import com.anji.integration.PersistenceEventListener;
 import com.anji.integration.PresentationEventListener;
@@ -13,7 +12,6 @@ import com.anji.util.Configurable;
 import com.anji.util.Properties;
 import com.anji.util.Reset;
 import org.apache.log4j.Logger;
-import org.jgap.BulkFitnessFunction;
 import org.jgap.Chromosome;
 import org.jgap.Genotype;
 import org.jgap.event.GeneticEvent;
@@ -24,7 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by rossfoley on 1/28/15.
+ * Evolve Mario AI agents by evaluating them on the MQPMarioTask
+ * @author Ross Foley and Karl Kuhn
  */
 public class MarioEvolver implements Configurable {
     private static Logger logger = Logger.getLogger(MarioEvolver.class);
