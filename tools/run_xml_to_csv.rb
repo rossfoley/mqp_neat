@@ -18,7 +18,8 @@ CSV.open(ARGV[1], 'w') do |csv|
           'Champion Complexity', 
           'Maximum Complexity', 
           'Minimum Complexity',
-          'Average Complexity'] 
+          'Average Complexity',
+          'Number of Species'] 
 
   # Open the file and parse it with Nokogiri
   run_xml = Nokogiri::XML(File.open(ARGV[0]))
@@ -42,6 +43,9 @@ CSV.open(ARGV[1], 'w') do |csv|
     values << gen.css('complexity max').children[0].text.to_i
     values << gen.css('complexity min').children[0].text.to_i
     values << gen.css('complexity avg').children[0].text.to_i
+
+    # Species
+    values << gen.css('specie').size
 
     # Output the values to the file
     csv << values
