@@ -25,13 +25,25 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
     }
 
     /**
+     * MQPMarioTask Constructor
+     * @param evaluationOptions the Mario options
+     * @param seed the seed to start the runs on
+     */
+    public MQPMarioTask(MarioAIOptions evaluationOptions, int seed) {
+        super(evaluationOptions);
+        setOptionsAndReset(evaluationOptions);
+        uniqueSeed = seed;
+        System.out.println("Running new generation on MQPMarioTask");
+    }
+
+    /**
      * Run the agent through a single specific level
      * @param controller the AI agent
      * @param difficulty the difficulty level
      * @param seed the level seed
      * @return the distance travelled by the agent
      */
-    private float evaluateSingleLevel(Agent controller, int difficulty, int seed) {
+    public float evaluateSingleLevel(Agent controller, int difficulty, int seed) {
         options.setAgent(controller);
         options.setLevelDifficulty(difficulty);
         options.setLevelRandSeed(seed);
