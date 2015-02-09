@@ -39,16 +39,17 @@ public class MarioActivator {
         NEATAgent marioAgent = new NEATAgent(a, radius);
 
         // Run it
-        System.out.println("Evaluating champion of radius " + radius);
-        int seed = 0;
-        for (int difficulty : difficulties) {
-            float fitness = task.evaluateSingleLevel(marioAgent, difficulty, seed);
-            System.out.println("Fitness for difficulty " + difficulty + " and seed " + seed + ": " + fitness);
-            seed++;
-        }
+//        System.out.println("Evaluating champion of radius " + radius);
+//        int seed = 0;
+//        for (int difficulty : difficulties) {
+//            float fitness = task.evaluateSingleLevel(marioAgent, difficulty, seed);
+//            System.out.println("Fitness for difficulty " + difficulty + " and seed " + seed + ": " + fitness);
+//            seed++;
+//        }
 
         // Run it
-        // task.evaluate(marioAgent);
+//        task.evaluate(marioAgent);
+        task.evaluateSingleLevel(marioAgent, 0, 2);
 
         // Exit
         System.exit(0);
