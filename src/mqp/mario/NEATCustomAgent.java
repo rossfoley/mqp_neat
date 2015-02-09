@@ -43,8 +43,8 @@ public class NEATCustomAgent extends BasicMarioAIAgent {
         }
 
         // Fill in jumping information
-        inputs[inputs.length - 3] = isMarioOnGround ? 1 : 0;
-        inputs[inputs.length - 2] = isMarioAbleToJump ? 1 : 0;
+        inputs[inputs.length - 2] = isMarioOnGround ? 1 : 0;
+        inputs[inputs.length - 1] = isMarioAbleToJump ? 1 : 0;
 
         // Get the neural network output
         double[] output = activator.next(inputs);

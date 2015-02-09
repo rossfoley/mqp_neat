@@ -22,7 +22,6 @@ public class MarioCustomFitnessFunction implements BulkFitnessFunction {
     private final static int MAX_FITNESS = 20480;
     private ActivatorTranscriber activatorFactory;
     private Properties props;
-    private int radius;
 
     public MarioCustomFitnessFunction(Properties props) {
         init(props);
@@ -33,7 +32,6 @@ public class MarioCustomFitnessFunction implements BulkFitnessFunction {
             props = newProps;
             ErrorFunction.getInstance().init(newProps);
             activatorFactory = (ActivatorTranscriber) newProps.singletonObjectProperty(ActivatorTranscriber.class);
-            radius = props.getIntProperty("mario.agent.input.radius");
         } catch ( Exception e ) {
             throw new IllegalArgumentException( "invalid properties: " + e.getClass().toString()
                     + ": " + e.getMessage() );
