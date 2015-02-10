@@ -96,9 +96,15 @@ public class MarioEvolver implements Configurable {
         config.getEventManager().addEventListener(GeneticEvent.RUN_COMPLETED_EVENT, presListener);
 
         // Fitness function
-        MarioFitnessFunction fitnessFunc = new MarioFitnessFunction(props);
-        config.setBulkFitnessFunction(fitnessFunc);
-        maxFitness = fitnessFunc.getMaxFitnessValue();
+        if (props.getBooleanProperty("mario.fitness_function.custom")) {
+            MarioCustomFitnessFunction fitnessFunc = new MarioCustomFitnessFunction(props);
+            config.setBulkFitnessFunction(fitnessFunc);
+            maxFitness = fitnessFunc.getMaxFitnessValue();
+        } else {
+            MarioFitnessFunction fitnessFunc = new MarioFitnessFunction(props);
+            config.setBulkFitnessFunction(fitnessFunc);
+            maxFitness = fitnessFunc.getMaxFitnessValue();
+        }
 
         // load population, either from previous run or random
         genotype = db.loadGenotype(config);

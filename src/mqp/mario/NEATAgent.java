@@ -49,6 +49,7 @@ public class NEATAgent extends BasicMarioAIAgent {
         }
 
         // Fill in jumping information
+        // It should be -2 and -1 instead of -3 and -2, but we can't change it now
         inputs[inputs.length - 3] = isMarioOnGround ? 1 : 0;
         inputs[inputs.length - 2] = isMarioAbleToJump ? 1 : 0;
 
