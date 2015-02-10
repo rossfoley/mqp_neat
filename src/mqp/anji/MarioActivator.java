@@ -8,6 +8,7 @@ import com.anji.util.DummyConfiguration;
 import com.anji.util.Properties;
 import mqp.mario.MQPMarioTask;
 import mqp.mario.NEATAgent;
+import mqp.mario.NEATCustomAgent;
 import org.jgap.Chromosome;
 import org.jgap.Configuration;
 
@@ -36,20 +37,20 @@ public class MarioActivator {
         Configuration config = new DummyConfiguration();
         Chromosome c = db.loadChromosome(chromosomeID, config);
         Activator a = activatorFactory.newActivator(c);
-        NEATAgent marioAgent = new NEATAgent(a, radius);
+        //NEATAgent marioAgent = new NEATAgent(a, radius);
+        NEATCustomAgent marioAgent = new NEATCustomAgent(a);
 
         // Run it
-//        System.out.println("Evaluating champion of radius " + radius);
-//        int seed = 0;
-//        for (int difficulty : difficulties) {
-//            float fitness = task.evaluateSingleLevel(marioAgent, difficulty, seed);
-//            System.out.println("Fitness for difficulty " + difficulty + " and seed " + seed + ": " + fitness);
-//            seed++;
-//        }
+        System.out.println("Evaluating champion of radius " + radius);
+        int seed = 0;
+        for (int difficulty : difficulties) {
+            float fitness = task.evaluateSingleLevel(marioAgent, difficulty, seed);
+            System.out.println("Fitness for difficulty " + difficulty + " and seed " + seed + ": " + fitness);
+            seed++;
+        }
 
         // Run it
 //        task.evaluate(marioAgent);
-        task.evaluateSingleLevel(marioAgent, 0, 2);
 
         // Exit
         System.exit(0);
