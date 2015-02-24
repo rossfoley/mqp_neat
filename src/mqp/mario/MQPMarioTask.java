@@ -11,7 +11,7 @@ import ch.idsia.tools.MarioAIOptions;
  */
 public class MQPMarioTask extends BasicTask implements Task, Cloneable {
     private int uniqueSeed;
-    private int difficulties[] = {0, 0, 1, 1, 3};
+    private int difficulties[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
 
     /**
      * MQPMarioTask Constructor
@@ -21,7 +21,7 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
         super(evaluationOptions);
         setOptionsAndReset(evaluationOptions);
         uniqueSeed = 1337;
-        System.out.println("Running new generation on MQPMarioTask");
+        System.out.println("New generation on MQPMarioTask");
     }
 
     /**
@@ -33,7 +33,6 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
         super(evaluationOptions);
         setOptionsAndReset(evaluationOptions);
         uniqueSeed = seed;
-        System.out.println("Running new generation on MQPMarioTask");
     }
 
     /**
@@ -65,6 +64,6 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
             seed++;
         }
 
-        return (int) totalFitness;
+        return (int) Math.max(0, totalFitness);
     }
 }
