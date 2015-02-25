@@ -19,7 +19,7 @@ import java.util.List;
  * @author Ross Foley and Karl Kuhn
  */
 public class MarioCustomFitnessFunction implements BulkFitnessFunction {
-    private final static int MAX_FITNESS = 20480;
+    private final static int MAX_FITNESS = 102400;
     private ActivatorTranscriber activatorFactory;
     private Properties props;
 
