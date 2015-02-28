@@ -4,6 +4,7 @@ import ch.idsia.agents.Agent;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.benchmark.tasks.Task;
 import ch.idsia.tools.MarioAIOptions;
+import org.apache.log4j.Logger;
 
 /**
  * Contains the levels that will be used to evolve Mario AI agents
@@ -13,6 +14,8 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
     private int uniqueSeed;
     private int difficulties[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
 
+    public static transient Logger LOGGER = Logger.getLogger(MQPMarioTask.class);
+
     /**
      * MQPMarioTask Constructor
      * @param evaluationOptions the Mario options
@@ -21,7 +24,7 @@ public class MQPMarioTask extends BasicTask implements Task, Cloneable {
         super(evaluationOptions);
         setOptionsAndReset(evaluationOptions);
         uniqueSeed = 1337;
-        System.out.println("New generation on MQPMarioTask");
+        LOGGER.info("New generation on MQPMarioTask");
     }
 
     /**
