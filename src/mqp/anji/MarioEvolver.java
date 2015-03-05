@@ -11,6 +11,7 @@ import com.anji.run.Run;
 import com.anji.util.Configurable;
 import com.anji.util.Properties;
 import com.anji.util.Reset;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.jgap.Chromosome;
 import org.jgap.Genotype;
