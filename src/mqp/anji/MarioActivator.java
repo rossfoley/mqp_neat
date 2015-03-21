@@ -25,11 +25,10 @@ public class MarioActivator {
         int radius = props.getIntProperty("mario.agent.input.radius");
         int fps = props.getIntProperty("mario.activator.fps");
         String chromosomeID = props.getProperty("mario.agent.chromosome.id");
-        int[] difficulties = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1};
 
         // Set Mario options
         MarioAIOptions marioAIOptions = new MarioAIOptions();
-        marioAIOptions.setVisualization(true);
+        marioAIOptions.setVisualization(false);
         marioAIOptions.setFPS(fps);
         MQPMarioTask task = new MQPMarioTask(marioAIOptions);
 
@@ -37,20 +36,23 @@ public class MarioActivator {
         Configuration config = new DummyConfiguration();
         Chromosome c = db.loadChromosome(chromosomeID, config);
         Activator a = activatorFactory.newActivator(c);
-        //NEATAgent marioAgent = new NEATAgent(a, radius);
-        NEATCustomAgent marioAgent = new NEATCustomAgent(a);
+        NEATAgent marioAgent = new NEATAgent(a, radius);
 
         // Run it
         System.out.println("Evaluating champion of radius " + radius);
+
+        int[] difficulties = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1};
+
+        // Evaluate the agent
+//        task.evaluate(agent);
+
         int seed = 0;
         for (int difficulty : difficulties) {
             float fitness = task.evaluateSingleLevel(marioAgent, difficulty, seed);
-            System.out.println("Fitness for difficulty " + difficulty + " and seed " + seed + ": " + fitness);
+            System.out.println(fitness);
             seed++;
         }
 
-        // Run it
-//        task.evaluate(marioAgent);
 
         // Exit
         System.exit(0);
